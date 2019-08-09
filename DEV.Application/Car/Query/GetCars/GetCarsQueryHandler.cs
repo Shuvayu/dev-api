@@ -2,7 +2,6 @@
 using DEV.Application.Car.Model;
 using DEV.Persistence.Repositories;
 using MediatR;
-using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,9 +26,10 @@ namespace DEV.Application.Car.Query.GetCars
             _carRepository = carRepository;
         }
 
-        public Task<List<CarDto>> Handle(GetCarsQuery getCarsQuery, CancellationToken cancellationToken)
+        public async Task<List<CarDto>> Handle(GetCarsQuery getCarsQuery, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var carList = await _carRepository.GetAllCarsAsync();
+            return _mapper.Map<List<CarDto>>(carList);
         }
     }
 }

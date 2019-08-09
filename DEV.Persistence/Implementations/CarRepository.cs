@@ -20,7 +20,7 @@ namespace DEV.Persistence.Implementations
             {
                 if (_cars.Count > 0)
                     return _cars;
-                using (Stream manifestResourceStream = typeof(CarRepository).GetTypeInfo().Assembly.GetManifestResourceStream("cars.json"))
+                using (Stream manifestResourceStream = typeof(CarRepository).GetTypeInfo().Assembly.GetManifestResourceStream("DEV.Persistence.Resources.Cars.json"))
                 {
                     using (StreamReader streamReader = new StreamReader(manifestResourceStream))
                     {

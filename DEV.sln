@@ -6,6 +6,12 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DEV.API", "DEV.API\DEV.API.csproj", "{4D5443CB-F27A-4A92-8359-A792341A148D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B9286C8E-7FF0-4643-858F-A276074CAAE9}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{4C8636EF-9D51-463C-8034-3E952E1B3C6E}"
 EndProject
@@ -29,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DEV.Application", "DEV.Appl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DEV.Domain", "DEV.Domain\DEV.Domain.csproj", "{62F262D9-875E-43A3-8276-C4152E48C681}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DEV.Persistence", "DEV.Persistence\DEV.Persistence.csproj", "{9662777D-0147-4E0C-9982-DFA4B880E0DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DEV.Persistence", "DEV.Persistence\DEV.Persistence.csproj", "{9662777D-0147-4E0C-9982-DFA4B880E0DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

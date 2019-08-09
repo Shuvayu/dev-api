@@ -1,4 +1,6 @@
-﻿using DEV.Application.Car.Query.GetCars;
+﻿using DEV.Application.Car.Model;
+using DEV.Application.Car.Query.GetCars;
+using DEV.Application.Common.Query;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -10,7 +12,7 @@ namespace DEV.API.Controllers.V1
     {
         // GET: api/Cars
         [HttpGet]
-        public async Task<IActionResult> GetAsync()
+        public async Task<IActionResult> GetAllAsync()
         {
             var query = new GetCarsQuery();
             return Ok(await Mediator.Send(query));
@@ -18,9 +20,10 @@ namespace DEV.API.Controllers.V1
 
         // GET: api/Cars/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public async Task<IActionResult> GetAsync(int id)
         {
-            return "value";
+            var query = new GetQuery<CarDto> { Id = id };
+            return Ok(await Mediator.Send(query));
         }
 
         // POST: api/Cars

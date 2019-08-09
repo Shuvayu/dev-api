@@ -7,6 +7,6 @@ namespace DEV.Application.Common.Query
         /// <summary>
         /// get sets the ID an API
         /// </summary>
-        public long Id { get; set; }
+        public int Id { get; set; }
     }
 }
