@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using DEV.Application.Car.Query.GetCars;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace DEV.API.Controllers.V1
 {
@@ -9,9 +10,10 @@ namespace DEV.API.Controllers.V1
     {
         // GET: api/Cars
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> GetAsync()
         {
-            return new string[] { "value1", "value2" };
+            var query = new GetCarsQuery();
+            return Ok(await Mediator.Send(query));
         }
 
         // GET: api/Cars/5

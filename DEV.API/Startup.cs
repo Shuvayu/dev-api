@@ -1,4 +1,8 @@
-﻿using DEV.Application.Infrastructure;
+﻿using AutoMapper;
+using DEV.Application.Car.Query.GetCars;
+using DEV.Application.Infrastructure;
+using DEV.Persistence.Implementations;
+using DEV.Persistence.Repositories;
 using MediatR;
 using MediatR.Pipeline;
 using Microsoft.AspNetCore.Builder;
@@ -7,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using System.Reflection;
 
 namespace DEV
 {
@@ -30,12 +35,16 @@ namespace DEV
             });
 
             // Add MediatR
+            var assemblyServiceInfo = typeof(GetCarsQueryHandler).GetTypeInfo().Assembly;
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPreProcessorBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
-            services.AddLogging();
+            services.AddScoped<ICarRepository, CarRepository>();
 
+            services.AddMediatR(assemblyServiceInfo);
+            services.AddAutoMapper(assemblyServiceInfo);
+            services.AddLogging();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
