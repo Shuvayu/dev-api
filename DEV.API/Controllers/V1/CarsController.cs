@@ -1,4 +1,5 @@
-﻿using DEV.Application.Car.Command;
+﻿using DEV.Application.Car.Command.CreateCar;
+using DEV.Application.Car.Command.UpdateCar;
 using DEV.Application.Car.Model;
 using DEV.Application.Car.Query.GetCars;
 using DEV.Application.Common.Query;
@@ -34,10 +35,11 @@ namespace DEV.API.Controllers.V1
             return Ok(await Mediator.Send(command));
         }
 
-        // PUT: api/Cars/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PUT: api/Cars
+        [HttpPut]
+        public async Task<IActionResult> PutAsync([FromForm] UpdateCarCommand command)
         {
+            return Ok(await Mediator.Send(command));
         }
 
         // DELETE: api/Cars/5

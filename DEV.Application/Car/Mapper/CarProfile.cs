@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using DEV.Application.Car.Command;
+using DEV.Application.Car.Command.CreateCar;
+using DEV.Application.Car.Command.UpdateCar;
 
 namespace DEV.Application.Car.Mapper
 {
@@ -8,6 +9,7 @@ namespace DEV.Application.Car.Mapper
         public CarProfile()
         {
             CreateMap<CreateCarCommand, Domain.Entities.Car>();
+            CreateMap<UpdateCarCommand, Domain.Entities.Car>();
         }
     }
 }

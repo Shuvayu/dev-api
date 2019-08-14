@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace DEV.Application.Car.Command
+namespace DEV.Application.Car.Command.CreateCar
 {
     public class CreateCarCommand : IRequest<int>
     {

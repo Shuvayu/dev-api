@@ -1,12 +1,13 @@
 ﻿using FluentValidation;
 using System;
 
-namespace DEV.Application.Car.Command
+namespace DEV.Application.Car.Command.UpdateCar
 {
-    public class CreateCarCommandValidator : AbstractValidator<CreateCarCommand>
+    public class UpdateCarCommandValidator : AbstractValidator<UpdateCarCommand>
     {
-        public CreateCarCommandValidator()
+        public UpdateCarCommandValidator()
         {
+            RuleFor(x => x.Id).NotEmpty().GreaterThan(0);
             RuleFor(x => x.Colour).NotEmpty();
             RuleFor(x => x.CountryManufactured).NotEmpty();
             RuleFor(x => x.Price).NotEmpty()

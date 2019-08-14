@@ -73,6 +73,7 @@ namespace DEV.Persistence.Implementations
             OriginalCar.Year = car.Year;
             OriginalCar.Colour = car.Colour;
             OriginalCar.Price = car.Price;
+            OriginalCar.CountryManufactured = car.CountryManufactured;
             return Task.CompletedTask;
         }
     }

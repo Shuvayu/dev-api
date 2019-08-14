@@ -4,7 +4,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DEV.Application.Car.Command
+namespace DEV.Application.Car.Command.CreateCar
 {
     public class CreateCarCommandHandler : IRequestHandler<CreateCarCommand, int>
     {
