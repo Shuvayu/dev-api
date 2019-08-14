@@ -5,11 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Car\Command\" />
-    <Folder Include="Car\Mapper\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
     <PackageReference Include="FluentValidation" Version="8.4.0" />
     <PackageReference Include="MediatR" Version="7.0.0" />

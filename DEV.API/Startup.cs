@@ -3,6 +3,7 @@ using DEV.Application.Car.Query.GetCars;
 using DEV.Application.Infrastructure;
 using DEV.Persistence.Implementations;
 using DEV.Persistence.Repositories;
+using FluentValidation.AspNetCore;
 using MediatR;
 using MediatR.Pipeline;
 using Microsoft.AspNetCore.Builder;
@@ -27,7 +28,12 @@ namespace DEV
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            var assemblyServiceType = typeof(GetCarsQueryHandler).GetTypeInfo();
+            var assemblyServiceInfo = assemblyServiceType.Assembly;
+
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddFluentValidation(v => v.RegisterValidatorsFromAssemblyContaining(assemblyServiceType));
 
             services.AddSwaggerGen(c =>
             {
@@ -35,7 +41,6 @@ namespace DEV
             });
 
             // Add MediatR
-            var assemblyServiceInfo = typeof(GetCarsQueryHandler).GetTypeInfo().Assembly;
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPreProcessorBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));

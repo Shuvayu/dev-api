@@ -42,11 +42,15 @@ namespace DEV.Persistence.Implementations
                 }
                 return _maxId;
             }
+            set
+            {
+                _maxId = value;
+            }
         }
 
         public Task<int> AddACarAsync(Car car)
         {
-            car.Id = ++_maxId;
+            car.Id = ++MaxId;
             Cars.Add(car);
             return Task.FromResult(car.Id);
         }

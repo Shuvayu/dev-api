@@ -1,4 +1,5 @@
-﻿using DEV.Application.Car.Model;
+﻿using DEV.Application.Car.Command;
+using DEV.Application.Car.Model;
 using DEV.Application.Car.Query.GetCars;
 using DEV.Application.Common.Query;
 using Microsoft.AspNetCore.Mvc;
@@ -28,8 +29,9 @@ namespace DEV.API.Controllers.V1
 
         // POST: api/Cars
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> PostAsync([FromForm] CreateCarCommand command)
         {
+            return Ok(await Mediator.Send(command));
         }
 
         // PUT: api/Cars/5
@@ -38,7 +40,7 @@ namespace DEV.API.Controllers.V1
         {
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Cars/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
