@@ -31,5 +31,13 @@ namespace DEV.Persistence.Repositories
         /// <param name="car"></param>
         /// <returns></returns>
         Task UpdateACarAsync(Car car);
+
+
+        /// <summary>
+        /// Deletes details of an existing car in persistent storage
+        /// </summary>
+        /// <param name="car"></param>
+        /// <returns></returns>
+        Task DeleteACarAsync(int id);
     }
 }

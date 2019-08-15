@@ -55,6 +55,13 @@ namespace DEV.Persistence.Implementations
             return Task.FromResult(car.Id);
         }
 
+        public Task DeleteACarAsync(int id)
+        {
+            var index = Cars.FindIndex(x => x.Id == id);
+            Cars.RemoveAt(index);
+            return Task.CompletedTask;
+        }
+
         public Task<Car> GetACarAsync(int id)
         {
             return Task.FromResult(Cars.SingleOrDefault(x => x.Id == id));

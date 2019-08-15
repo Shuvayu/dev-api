@@ -2,6 +2,7 @@
 using DEV.Application.Car.Command.UpdateCar;
 using DEV.Application.Car.Model;
 using DEV.Application.Car.Query.GetCars;
+using DEV.Application.Common.Command;
 using DEV.Application.Common.Query;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -44,8 +45,10 @@ namespace DEV.API.Controllers.V1
 
         // DELETE: api/Cars/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
+            var command = new DeleteCommand { Id = id };
+            return Ok(await Mediator.Send(command));
         }
     }
 }
