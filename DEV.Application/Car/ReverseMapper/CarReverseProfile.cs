@@ -7,7 +7,7 @@ namespace DEV.Application.Car.ReverseMapper
     {
         public CarReverseProfile()
         {
-            CreateMap<Domain.Entities.Car, CarDto>();
+            CreateMap<Domain.Entities.Car, CarDto>().ReverseMap();
         }
     }
 }

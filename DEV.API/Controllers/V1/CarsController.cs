@@ -1,10 +1,14 @@
 ﻿using DEV.Application.Car.Command.CreateCar;
+using DEV.Application.Car.Command.DiscountCars;
 using DEV.Application.Car.Command.UpdateCar;
 using DEV.Application.Car.Model;
 using DEV.Application.Car.Query.GetCars;
 using DEV.Application.Common.Command;
 using DEV.Application.Common.Query;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace DEV.API.Controllers.V1
@@ -49,6 +53,20 @@ namespace DEV.API.Controllers.V1
         {
             var command = new DeleteCommand { Id = id };
             return Ok(await Mediator.Send(command));
+        }
+
+        [HttpPost("discount")]
+        public async Task<IActionResult> Discount()
+        {
+            using (StreamReader streamReader = new StreamReader(Request.Body))
+            {
+                using (JsonReader jsonReader = new JsonTextReader(streamReader))
+                {
+                    List<CarDto> carlist = new JsonSerializer().Deserialize<List<CarDto>>(jsonReader);
+                    DiscountCarsCommand command = new DiscountCarsCommand { CarList = carlist };
+                    return Ok(await Mediator.Send(command));
+                }
+            }
         }
     }
 }
